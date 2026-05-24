@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+media/
+staticfiles/
+
+# Environnement
+.env
+*.env
+
+# Docker
+.dockerignore
+
+# VS Code
+.vscode/
+
+# Migration (on garde les fichiers de migration)
+# Ne pas ignorer les migrations
+
+# OS
+.DS_Store
+Thumbs.db
