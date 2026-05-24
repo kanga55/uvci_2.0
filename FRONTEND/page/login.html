@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connexion — UVCI</title>
+  <link rel="stylesheet" href="../css/login.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Panneau gauche -->
+  <div class="panel-left">
+    <div class="panel-left__inner">
+
+      <div class="brand">
+        <div class="brand__logo">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <rect width="36" height="36" rx="10" fill="#f5c518"/>
+            <path d="M10 26V10h5l3 10 3-10h5v16h-4V17l-2.5 9H17L14.5 17V26H10z" fill="#1a2e4a"/>
+          </svg>
+        </div>
+        <span class="brand__name">UVCI</span>
+      </div>
+
+      <div class="panel-left__content">
+        <h1 class="panel-left__title">Gestion des Heures<br/><span>des Enseignants</span></h1>
+        <p class="panel-left__subtitle">Plateforme dédiée au suivi des activités pédagogiques et au calcul automatique des volumes horaires.</p>
+
+        <ul class="feature-list">
+          <li class="feature-list__item">
+            <span class="feature-list__dot"></span>
+            Calcul automatique des heures
+          </li>
+          <li class="feature-list__item">
+            <span class="feature-list__dot"></span>
+            États de paiement PDF &amp; Excel
+          </li>
+          <li class="feature-list__item">
+            <span class="feature-list__dot"></span>
+            Tableaux de bord en temps réel
+          </li>
+          <li class="feature-list__item">
+            <span class="feature-list__dot"></span>
+            Gestion multi-profils sécurisée
+          </li>
+        </ul>
+      </div>
+
+      <div class="panel-left__decor">
+        <div class="decor-circle decor-circle--1"></div>
+        <div class="decor-circle decor-circle--2"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Panneau droit -->
+  <div class="panel-right">
+    <div class="login-card">
+
+      <div class="login-card__header">
+        <h2 class="login-card__title">Connexion</h2>
+        <p class="login-card__subtitle">Entrez vos identifiants pour accéder à votre espace.</p>
+      </div>
+
+      <!-- Message d'erreur -->
+      <div class="alert alert--error" id="alertError" style="display:none;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span id="alertMessage">Serveur injoignable.</span>
+      </div>
+
+      <div class="form">
+
+        <div class="form__group">
+          <label class="form__label" for="email">Adresse email</label>
+          <div class="form__input-wrap">
+            <svg class="form__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+            <input class="form__input" type="email" id="email" name="email" placeholder="admin@uvci.ci" autocomplete="email" />
+          </div>
+        </div>
+
+        <div class="form__group">
+          <label class="form__label" for="password">Mot de passe</label>
+          <div class="form__input-wrap">
+            <svg class="form__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <input class="form__input" type="password" id="password" name="password" placeholder="••••••••" autocomplete="current-password" />
+            <button class="form__toggle-pwd" type="button" id="togglePwd" aria-label="Afficher le mot de passe">
+              <svg id="iconEye" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              <svg id="iconEyeOff" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="form__row">
+          <label class="form__check">
+            <input type="checkbox" id="remember" />
+            <span class="form__check-box"></span>
+            Se souvenir de moi
+          </label>
+          <a href="#" class="form__link">Mot de passe oublié ?</a>
+        </div>
+
+        <button class="btn-submit" id="btnLogin" type="button">
+          <span class="btn-submit__text">Se connecter</span>
+          <span class="btn-submit__loader" id="btnLoader" style="display:none;">
+            <span class="spinner"></span>
+          </span>
+          <svg class="btn-submit__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+
+        <div class="form__demo">
+          <span>CONNEXION RAPIDE (DÉMO)</span>
+          <div class="demo-btns">
+            <button class="demo-btn" data-email="admin@uvci.ci" data-pwd="admin1234" type="button">Admin</button>
+            <button class="demo-btn" data-email="secretaire@uvci.ci" data-pwd="uvci1234" type="button">Secrétaire</button>
+            <button class="demo-btn" data-email="enseignant@uvci.ci" data-pwd="uvci1234" type="button">Enseignant</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/login.js"></script>
+</body>
+</html>
