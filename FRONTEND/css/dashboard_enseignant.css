@@ -1,0 +1,144 @@
+/* ============================================================
+   DASHBOARD_ENSEIGNANT.CSS — Styles spécifiques à l'enseignant
+   ============================================================ */
+
+/* Carte profil enseignant */
+.teacher-profile-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 24px 26px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 20px;
+    border-left: 4px solid var(--gold);
+    flex-wrap: wrap;
+}
+
+.teacher-profile-card__avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--blue-mid);
+    color: var(--white);
+    font-family: var(--font-head);
+    font-size: 26px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.teacher-profile-card__info {
+    flex: 1;
+    min-width: 160px;
+}
+
+.teacher-profile-card__info h3 {
+    font-family: var(--font-head);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--blue-dark);
+    margin-bottom: 4px;
+}
+
+.teacher-profile-card__info p {
+    font-size: 13.5px;
+    color: var(--gray-text);
+    line-height: 1.6;
+}
+
+.teacher-profile-card__stats {
+    display: flex;
+    gap: 28px;
+}
+
+.profile-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.profile-stat__label {
+    font-size: 11px;
+    color: var(--gray-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.profile-stat__value {
+    font-family: var(--font-head);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--blue-dark);
+}
+
+/* Volume horaire détaillé */
+.volume-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.volume-annee-block {
+    border: 1.5px solid var(--gray-border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+}
+
+.volume-annee-block__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    background: var(--gray-bg);
+    border-bottom: 1px solid var(--gray-border);
+}
+
+.volume-annee-block__header h4 {
+    font-family: var(--font-head);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--blue-dark);
+}
+
+.volume-annee-block__body {
+    padding: 14px 18px;
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+}
+
+.volume-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.volume-stat__label {
+    font-size: 11.5px;
+    color: var(--gray-muted);
+}
+
+.volume-stat__value {
+    font-family: var(--font-head);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--blue-dark);
+}
+
+@media (max-width: 600px) {
+    .teacher-profile-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .teacher-profile-card__stats {
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+}

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mon Espace — UVCI</title>
+    <link rel="stylesheet" href="../css/dashboard.css" />
+    <link rel="stylesheet" href="../css/dashboard_enseignant.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet" />
+</head>
+
+<body>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar__brand">
+            <div class="sidebar__logo">
+                <svg width="32" height="32" viewBox="0 0 36 36" fill="none">
+                    <rect width="36" height="36" rx="10" fill="#f5c518" />
+                    <path d="M10 26V10h5l3 10 3-10h5v16h-4V17l-2.5 9H17L14.5 17V26H10z" fill="#1a2e4a" />
+                </svg>
+            </div>
+            <span class="sidebar__name">UVCI</span>
+            <button class="sidebar__close" id="sidebarClose">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+            </button>
+        </div>
+        <div class="sidebar__role-badge"><span class="role-dot"></span>Enseignant</div>
+        <nav class="sidebar__nav">
+            <div class="nav-section">
+                <span class="nav-section__label">Mon espace</span>
+                <a href="#" class="nav-item nav-item--active" data-page="dashboard">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.8">
+                        <rect x="3" y="3" width="7" height="7" />
+                        <rect x="14" y="3" width="7" height="7" />
+                        <rect x="3" y="14" width="7" height="7" />
+                        <rect x="14" y="14" width="7" height="7" />
+                    </svg>
+                    Mon tableau de bord
+                </a>
+                <a href="#" class="nav-item" data-page="activities">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.8">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                    </svg>
+                    Mes activités
+                </a>
+                <a href="#" class="nav-item" data-page="volume">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.8">
+                        <line x1="18" y1="20" x2="18" y2="10" />
+                        <line x1="12" y1="20" x2="12" y2="4" />
+                        <line x1="6" y1="20" x2="6" y2="14" />
+                    </svg>
+                    Mon volume horaire
+                </a>
+                <a href="#" class="nav-item" data-page="recap">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.8">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                    </svg>
+                    Mon récapitulatif
+                </a>
+            </div>
+        </nav>
+        <div class="sidebar__footer">
+            <button class="btn-logout" id="btnLogout">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                    <polyline points="16 17 21 12 16 7" />
+                    <line x1="21" y1="12" x2="9" y2="12" />
+                </svg>
+                Déconnexion
+            </button>
+        </div>
+    </aside>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="main-wrapper">
+        <header class="topbar">
+            <div class="topbar__left">
+                <button class="topbar__menu-btn" id="menuBtn">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg>
+                </button>
+                <span class="topbar__page-title" id="pageTitle">Mon tableau de bord</span>
+            </div>
+            <div class="topbar__right">
+                <div class="topbar__annee">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" />
+                        <line x1="16" y1="2" x2="16" y2="6" />
+                        <line x1="8" y1="2" x2="8" y2="6" />
+                        <line x1="3" y1="10" x2="21" y2="10" />
+                    </svg>
+                    <span id="anneeLabel">2025-2026</span>
+                </div>
+                <div class="topbar__user">
+                    <div class="topbar__avatar" id="userAvatar">E</div>
+                    <div class="topbar__user-info">
+                        <span class="topbar__user-name" id="userName">Enseignant</span>
+                        <span class="topbar__user-role">Enseignant</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="content">
+
+            <!-- PAGE DASHBOARD -->
+            <section class="page page--active" id="page-dashboard">
+                <div class="page__header">
+                    <div>
+                        <h2 class="page__title">Bonjour, <span id="greetName">Enseignant</span> 👋</h2>
+                        <p class="page__subtitle">Voici le récapitulatif de vos activités pédagogiques.</p>
+                    </div>
+                </div>
+
+                <!-- Cartes personnelles -->
+                <div class="stats-grid">
+                    <div class="stat-card stat-card--blue">
+                        <div class="stat-card__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.8">
+                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                            </svg></div>
+                        <div class="stat-card__body"><span class="stat-card__label">Mes activités</span><span
+                                class="stat-card__value" id="statMyActivities">—</span></div>
+                    </div>
+                    <div class="stat-card stat-card--gold">
+                        <div class="stat-card__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.8">
+                                <circle cx="12" cy="12" r="10" />
+                                <polyline points="12 6 12 12 16 14" />
+                            </svg></div>
+                        <div class="stat-card__body"><span class="stat-card__label">Total heures</span><span
+                                class="stat-card__value" id="statMyHeures">—</span></div>
+                    </div>
+                    <div class="stat-card stat-card--green">
+                        <div class="stat-card__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.8">
+                                <line x1="12" y1="1" x2="12" y2="23" />
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                            </svg></div>
+                        <div class="stat-card__body"><span class="stat-card__label">Montant estimé (FCFA)</span><span
+                                class="stat-card__value" id="statMyMontant">—</span></div>
+                    </div>
+                    <div class="stat-card stat-card--purple">
+                        <div class="stat-card__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.8">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                            </svg></div>
+                        <div class="stat-card__body"><span class="stat-card__label">Heures complémentaires</span><span
+                                class="stat-card__value" id="statHeuresComp">—</span></div>
+                    </div>
+                </div>
+
+                <!-- Profil enseignant -->
+                <div class="teacher-profile-card" id="teacherProfile">
+                    <div class="teacher-profile-card__avatar" id="profileAvatar">?</div>
+                    <div class="teacher-profile-card__info">
+                        <h3 id="profileName">—</h3>
+                        <p id="profileGrade">—</p>
+                        <p id="profileDept">—</p>
+                    </div>
+                    <div class="teacher-profile-card__stats">
+                        <div class="profile-stat">
+                            <span class="profile-stat__label">Taux horaire</span>
+                            <span class="profile-stat__value" id="profileTaux">—</span>
+                        </div>
+                        <div class="profile-stat">
+                            <span class="profile-stat__label">Statut</span>
+                            <span class="profile-stat__value" id="profileStatut">—</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__header">
+                        <h3 class="card__title">Mes dernières activités</h3>
+                    </div>
+                    <div class="table-wrap">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Ressource</th>
+                                    <th>Type</th>
+                                    <th>Complexité</th>
+                                    <th>Heures</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbodyRecent">
+                                <tr>
+                                    <td colspan="5" class="table__loading">Chargement...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PAGE ACTIVITÉS -->
+            <section class="page" id="page-activities">
+                <div class="page__header">
+                    <div>
+                        <h2 class="page__title">Mes activités</h2>
+                        <p class="page__subtitle">Toutes mes activités pédagogiques.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="table-wrap">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Ressource</th>
+                                    <th>Type</th>
+                                    <th>Heures</th>
+                                    <th>Date</th>
+                                    <th>Année</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbodyActivities">
+                                <tr>
+                                    <td colspan="5" class="table__loading">Chargement...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PAGE VOLUME -->
+            <section class="page" id="page-volume">
+                <div class="page__header">
+                    <div>
+                        <h2 class="page__title">Mon volume horaire</h2>
+                        <p class="page__subtitle">Récapitulatif de mes heures par année académique.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card__body" id="volumeContent">Chargement...</div>
+                </div>
+            </section>
+
+            <!-- PAGE RÉCAPITULATIF -->
+            <section class="page" id="page-recap">
+                <div class="page__header">
+                    <div>
+                        <h2 class="page__title">Mon récapitulatif</h2>
+                        <p class="page__subtitle">États générés par l'administration.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="table-wrap">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Année</th>
+                                    <th>Heures</th>
+                                    <th>Montant</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbodyRecap">
+                                <tr>
+                                    <td colspan="5" class="table__loading">Chargement...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="../js/dashboard.js"></script>
+    <script src="../js/dashboard_enseignant.js"></script>
+</body>
+
+</html>
