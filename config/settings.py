@@ -92,6 +92,27 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5500",
 ]
 CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:5500',
+    'http://127.0.0.1:5500',
+]
+SESSION_COOKIE_SAMESITE = 'Lax'
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SAMESITE    = 'Lax'
+CSRF_COOKIE_HTTPONLY    = False
+CORS_ALLOW_CREDENTIALS = True
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
@@ -112,3 +133,16 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# CSRF — autoriser le frontend Live Server
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:5500',
+    'http://127.0.0.1:5500',
+]
+
+# Sessions — envoyer le cookie même en cross-origin
+SESSION_COOKIE_SAMESITE = 'Lax'
+SESSION_COOKIE_HTTPONLY  = True
+CSRF_COOKIE_SAMESITE     = 'Lax'
+CSRF_COOKIE_HTTPONLY     = False  # le JS doit pouvoir lire le token CSRF

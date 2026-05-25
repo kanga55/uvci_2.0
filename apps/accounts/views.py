@@ -99,3 +99,30 @@ class UserListCreateView(APIView):
             serializer.errors,
             status=status.HTTP_400_BAD_REQUEST
         )
+    
+
+from django.middleware.csrf import get_token
+from django.http import JsonResponse
+
+class CSRFTokenView(APIView):
+    """
+    GET /api/accounts/csrf/
+    Retourne un cookie csrftoken au navigateur.
+    Le frontend l'utilise pour les requêtes POST.
+    """
+    permission_classes = [permissions.AllowAny]
+
+    def get(self, request):
+        token = get_token(request)
+        return JsonResponse({'csrfToken': token})
+    
+
+from django.middleware.csrf import get_token
+from django.http import JsonResponse
+
+class CSRFTokenView(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def get(self, request):
+        token = get_token(request)
+        return JsonResponse({'csrfToken': token})

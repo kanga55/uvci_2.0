@@ -55,12 +55,10 @@ async function handleLogin() {
     const email = emailInput.value.trim();
     const password = pwdInput.value;
 
-    // Validation basique côté client
     if (!email || !password) {
         showAlert('Veuillez renseigner votre email et votre mot de passe.');
         return;
     }
-
     if (!isValidEmail(email)) {
         showAlert('Adresse email invalide.');
         return;
@@ -69,33 +67,48 @@ async function handleLogin() {
     setLoading(true);
 
     try {
+        // Étape 1 : récupérer le token CSRF depuis Django
+        await fetch(`${API_BASE}/accounts/csrf/`, {
+            credentials: 'include'
+        });
+
+        // Lire le cookie csrftoken
+        const csrfToken = getCookie('csrftoken');
+
+        // Étape 2 : envoyer le login avec le token
         const response = await fetch(`${API_BASE}/accounts/login/`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            credentials: 'include',         // envoie et reçoit les cookies de session
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
+            },
+            credentials: 'include',
             body: JSON.stringify({ email, password })
         });
 
         const data = await response.json();
 
         if (response.ok) {
-            // Connexion réussie — on stocke le profil dans sessionStorage
             sessionStorage.setItem('user', JSON.stringify(data.user));
-            // Redirection selon le rôle
             redirectByRole(data.user.role);
         } else {
-            // Erreur renvoyée par Django (mauvais identifiants, compte inactif...)
-            const message = extractError(data);
-            showAlert(message);
+            showAlert(extractError(data));
         }
 
     } catch (err) {
-        // Réseau coupé, Django pas démarré, CORS...
         showAlert('Serveur injoignable. Vérifiez que Django tourne sur le port 8000.');
         console.error('[UVCI Login]', err);
     } finally {
         setLoading(false);
     }
+}
+
+// Lire un cookie par son nom
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return '';
 }
 
 // ============================================================

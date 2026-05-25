@@ -164,3 +164,32 @@ function statutBadge(statut) {
     const [cls, label] = map[statut] || ['badge--gray', statut];
     return `<span class="badge ${cls}">${label}</span>`;
 }
+
+
+// Récupérer le cookie CSRF
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return '';
+}
+
+// Version POST de apiFetch (avec CSRF)
+async function apiPost(endpoint, body) {
+    try {
+        const res = await fetch(`${API_BASE}${endpoint}`, {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken')
+            },
+            body: JSON.stringify(body)
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return await res.json();
+    } catch (err) {
+        console.error(`[UVCI API POST] ${endpoint}`, err);
+        return null;
+    }
+}
